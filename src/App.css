@@ -72,7 +72,7 @@
   display:flex;
   flex-direction: column;
   justify-content: space-between;
-  background: linear-gradient(to bottom, transparent,transparent, black),url(1d06a132afc9e92d2974c63f9ce25737.jpg);
+  background: linear-gradient(to bottom, transparent,transparent, black),url("/1d06a132afc9e92d2974c63f9ce25737.jpg");
   background-size:cover;
   background-position: center;
   color:white;
