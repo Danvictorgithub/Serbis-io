@@ -4,7 +4,6 @@ import Icon from '@mdi/react';
 import { mdiHomeRoof } from '@mdi/js';
 import Header from "./views/header/header";
 import Footer from "./views/footer/footer";
-
 import Home from "./views/home/home";
 import './App.css';
 
