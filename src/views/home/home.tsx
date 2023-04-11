@@ -1,8 +1,6 @@
 import React from 'react';
-import Icon from '@mdi/react';
-import { mdiHeartCircle } from '@mdi/js';
-
-
+import HeartOutlineLogo from "../../assets/heartOutlineLogo";
+import uniqid from "uniqid";
 interface ServiceInfo {
 	sName:string,
 	sImg:string,
@@ -31,11 +29,11 @@ export default function Home() {
 			<div className='servicesContent'>
 				{services.map((service:ServiceInfo):JSX.Element => {
 					return (
-						<div className='serviceCard'>
+						<div className='serviceCard' key={uniqid()}>
 							<div className='cardContent'>
 								<div className='cardTop'>
 									<h3>{service.sName}</h3>
-									<Icon path={mdiHeartCircle} size={2} />
+									<HeartOutlineLogo/>	
 								</div>
 								<div className='cardBot'>
 									<div className="cardTag">{service.sTag}</div>

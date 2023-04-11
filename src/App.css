@@ -21,6 +21,12 @@
   position: sticky;
   top: 0;
 }
+.navLogo {
+  height: 46px;
+}
+.navLogo:hover {
+  fill: orangered;
+}
 .header h1::before {
   content: "";
   background-color: red;
@@ -47,7 +53,7 @@
   justify-content: space-evenly;
 }
 .navBot > * {
-  outline:3px solid orangered;
+  outline:3px solid #454545;
   border: 1px solid lightgray;
   border-radius: 12px;
 /*  outline-offset: 15px;*/
