@@ -198,5 +198,53 @@
   white-space: nowrap;
   text-overflow: ellipsis;
 }
+.profile {
+  background-color: white;
+}
+.profile.container .wrapper{
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+}
+.profile-landing-image {
+  max-width: 300px;
+}
+.login-auth, .inputGroup {
+  display: flex;
+  flex-direction: column;
+  gap:12px;
+}
+.login-auth input {
+  height: 50px;
+  border:2px solid lightgray;
+  border-radius: 2rem;
+  padding:10px 20px;
+  font-weight: bold;
+}
+.loginSubmit {
+  height: 55px;
+  background-color: orangered;
+  border:2px solid transparent;
+  border-radius: 18px;
+  color:white;
+  font-weight: bold;
+  font-size: 1rem;
+}
+.loginSubmit:active {
+  outline: none;
+}
+.loginSubmit:hover {
+  background-color: transparent;
+  border: 2px solid orangered;
+  color:orangered;
+}
+.loginSubmit:active {
+  background-color: orangered;
+  border:1px solid transparent;
+  color:white;
+  box-shadow: 2px 2px black;
+}
 /*web responsive -> home {map is moved at the left-side}*/
 /*implement darkmode in settings*/
