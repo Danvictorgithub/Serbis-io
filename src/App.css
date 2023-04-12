@@ -1,5 +1,13 @@
 #root {
 /*  position: relative;*/
+  background-color:#EAE7F3;
+}
+
+.wrapper {
+  margin-inline: auto auto;
+  flex:1 0 auto;
+  max-width: 1000px;
+  width:100%;
 }
 .App {
   height:100svh;
@@ -7,7 +15,6 @@
   flex-direction: column;
 }
 .App > :nth-child(2) {
-  background-color:#EAE7F3;
   flex: 1 1 0;  
 }
 .header {
@@ -62,6 +69,10 @@
 }
 .container {
   padding:18px;
+}
+.home {
+    background-color:#EAE7F3;
+
 }
 .heroLocation {
   padding:12px;
@@ -151,3 +162,22 @@
   background-color: transparent;
   color:orangered;
 }
+.mail{
+
+/*  background-color: white;*/
+  
+
+}
+.mail h2 {
+/*  background-color: white;*/
+}
+.mailContainer {
+  background-color: white;
+  padding: 24px;
+  margin-bottom: 12px;
+  border-radius: 12px;
+}
+
+/*web responsive -> home {map is moved at the left-side}*/
+/*mailbox is implemented like messenger
+implement darkmode in settings*/

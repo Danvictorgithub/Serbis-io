@@ -14,36 +14,38 @@ export default function Home() {
 	];
 	return (
 		<div className='home container'>
-			<div className='heroLocation'>
-				<h2>Current Location: Butuan</h2>
-				<div className='locationMeta'>
-					<h3>No. Services: <span>24</span></h3>
-					<div className="serviceTags">
-						<div className="sTag">Boarding House</div>
-						<div className="sTag">Manicure</div>
-						<div className="sTag">Water Delivery</div>
-						<div className="sTag">Septic Tank Repairs</div>
+			<div className='wrapper'>
+				<div className='heroLocation'>
+					<h2>Current Location: Butuan</h2>
+					<div className='locationMeta'>
+						<h3>No. Services: <span>24</span></h3>
+						<div className="serviceTags">
+							<div className="sTag">Boarding House</div>
+							<div className="sTag">Manicure</div>
+							<div className="sTag">Water Delivery</div>
+							<div className="sTag">Septic Tank Repairs</div>
+						</div>
 					</div>
 				</div>
-			</div>
-			<div className='servicesContent'>
-				{services.map((service:ServiceInfo):JSX.Element => {
-					return (
-						<div className='serviceCard' key={uniqid()}>
-							<div className='cardContent'>
-								<div className='cardTop'>
-									<h3>{service.sName}</h3>
-									<HeartOutlineLogo/>	
+				<div className='servicesContent'>
+					{services.map((service:ServiceInfo):JSX.Element => {
+						return (
+							<div className='serviceCard' key={uniqid()}>
+								<div className='cardContent'>
+									<div className='cardTop'>
+										<h3>{service.sName}</h3>
+										<HeartOutlineLogo/>	
+									</div>
+									<div className='cardBot'>
+										<div className="cardTag">{service.sTag}</div>
+										<button className='cardButton'>Avail Service</button>
+									</div>
 								</div>
-								<div className='cardBot'>
-									<div className="cardTag">{service.sTag}</div>
-									<button className='cardButton'>Avail Service</button>
-								</div>
+								<img className='cardImg' src={service.sImg}></img>
 							</div>
-							<img className='cardImg' src={service.sImg}></img>
-						</div>
-					)
-				})}
+						)
+					})}
+				</div>
 			</div>
 		</div>
 	)
