@@ -12,7 +12,24 @@ export default function Mail() {
 		},
 		{message:"lorem ipsum es camat lorem ipsum es camatlorem ipsum es camatlorem ipsum es camatlorem ipsum es camat",
 		 user:uniqid()
-		}
+		},
+		{message:"lorem ipsum es camat lorem ipsum es camatlorem ipsum es camatlorem ipsum es camatlorem ipsum es camat",
+		 user:uniqid()
+		},
+		{message:"lorem ipsum es camat lorem ipsum es camatlorem ipsum es camatlorem ipsum es camatlorem ipsum es camat",
+		 user:uniqid()
+		},
+		{message:"lorem ipsum es camat lorem ipsum es camatlorem ipsum es camatlorem ipsum es camatlorem ipsum es camat",
+		 user:uniqid()
+		},
+		{message:"lorem ipsum es camat lorem ipsum es camatlorem ipsum es camatlorem ipsum es camatlorem ipsum es camat",
+		 user:uniqid()
+		},
+		{message:"lorem ipsum es camat lorem ipsum es camatlorem ipsum es camatlorem ipsum es camatlorem ipsum es camat",
+		 user:uniqid()
+		},
+
+
 		];
 	const isMailEmpty = (mailArray.length == 0);
 	return (

@@ -1,6 +1,7 @@
 import React from 'react';
 import HeartOutlineLogo from "../../assets/heartOutlineLogo";
 import uniqid from "uniqid";
+import Location from './components/location';
 interface ServiceInfo {
 	sName:string,
 	sImg:string,
@@ -15,18 +16,7 @@ export default function Home() {
 	return (
 		<div className='home container'>
 			<div className='wrapper'>
-				<div className='heroLocation'>
-					<h2>Current Location: Butuan</h2>
-					<div className='locationMeta'>
-						<h3>No. Services: <span>24</span></h3>
-						<div className="serviceTags">
-							<div className="sTag">Boarding House</div>
-							<div className="sTag">Manicure</div>
-							<div className="sTag">Water Delivery</div>
-							<div className="sTag">Septic Tank Repairs</div>
-						</div>
-					</div>
-				</div>
+				<Location />
 				<div className='servicesContent'>
 					{services.map((service:ServiceInfo):JSX.Element => {
 						return (

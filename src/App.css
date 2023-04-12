@@ -1,13 +1,15 @@
 #root {
 /*  position: relative;*/
-  background-color:#EAE7F3;
 }
-
 .wrapper {
   margin-inline: auto auto;
   flex:1 0 auto;
   max-width: 1000px;
   width:100%;
+}
+.container {
+  background-color:#EAE7F3;
+  padding:18px;
 }
 .App {
   height:100svh;
@@ -68,12 +70,8 @@
 .navLogo:hover {
   fill: orangered;
 }
-.container {
-  padding:18px;
-}
 .home {
-    background-color:#EAE7F3;
-
+/*    background-color:#EAE7F3;*/
 }
 .heroLocation {
   padding:12px;
@@ -201,5 +199,4 @@
   text-overflow: ellipsis;
 }
 /*web responsive -> home {map is moved at the left-side}*/
-/*mailbox is implemented like messenger
-implement darkmode in settings*/
+/*implement darkmode in settings*/
