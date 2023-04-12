@@ -246,5 +246,13 @@
   color:white;
   box-shadow: 2px 2px black;
 }
+.map.container{
+  padding: 0;
+  background-color: white;
+}
+.leaflet-container {
+  height:100%;
+  width:100%;
+}
 /*web responsive -> home {map is moved at the left-side}*/
 /*implement darkmode in settings*/
