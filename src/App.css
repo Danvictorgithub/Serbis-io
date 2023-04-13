@@ -249,10 +249,24 @@
 .map.container{
   padding: 0;
   background-color: white;
+  display:flex;
+  justify-content: center;
+  align-items: flex-start;
 }
 .leaflet-container {
   height:100%;
   width:100%;
+}
+
+.modal {
+/*  z-index: 1;*/
+  position: absolute;
+  z-index: 401;
+  background-color: #00C838;
+  color:white;
+  border-radius: 12px;
+  padding:12px;
+  margin:12px auto;
 }
 /*web responsive -> home {map is moved at the left-side}*/
 /*implement darkmode in settings*/

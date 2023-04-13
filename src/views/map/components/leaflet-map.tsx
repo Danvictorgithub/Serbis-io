@@ -1,13 +1,17 @@
-import React, {useState} from 'react';
+import React, {useState, useContext} from 'react';
 import "leaflet/dist/leaflet.css";
 import {MapContainer,TileLayer,useMap ,useMapEvents,useMapEvent, Marker, Popup} from 'react-leaflet';
 import redIcon from "../../../assets/icons/map-marker-icon.png";
 import {Icon} from "leaflet";
+
+import locationModalProps from './utils/locationModalProps';
+import MapContext from './utils/mapContext';
 interface LatLngLiteral {
     lat: number;
     lng: number;
 }
 function SetUserLocation():JSX.Element {
+  const locationStateContent = useContext(MapContext);
   const [position, setPosition] = useState<null| LatLngLiteral>(null);
   const customIcon = new Icon({
     iconUrl:redIcon,
@@ -18,7 +22,16 @@ function SetUserLocation():JSX.Element {
         map.locate();
       },
       locationfound(e) {
-        setPosition(e.latlng)
+        setPosition(e.latlng);
+        Promise.resolve(fetch(`https://nominatim.openstreetmap.org/reverse?format=geocodejson&lat=${e.latlng.lat}&lon=${e.latlng.lng}`))
+          .then((response)=> {
+            return response.json()})
+          .then(response => {
+            const locationData = response.features['0'].properties.geocoding;
+            const location = `${locationData.city}, ${locationData.district}`;
+            locationStateContent.locationState[1](location);
+            return response;
+          });
         map.flyTo(e.latlng,map.getZoom());
       }
     });
@@ -29,12 +42,23 @@ function SetUserLocation():JSX.Element {
   )
 }
 function WatchCenter():JSX.Element {
+  const locationStateContent = useContext(MapContext);
   const map = useMapEvent('moveend',()=> {
-    console.log(map.getCenter());
+    const latlng = map.getCenter();
+    Promise.resolve(fetch(`https://nominatim.openstreetmap.org/reverse?format=geocodejson&lat=${latlng.lat}&lon=${latlng.lng}`))
+          .then((response)=> {
+            return response.json()})
+          .then(response => {
+            const locationData = response.features['0'].properties.geocoding;
+            const location = `${locationData.city}, ${locationData.district}`;
+            locationStateContent.locationState[1](location);
+            return response;
+          });
   });
   return (<></>);
 }
 export default function LeafletMap() {
+
 	return (
 		<MapContainer center={[8.9475377, 125.54062339999996]} zoom={13} scrollWheelZoom={true} doubleClickZoom={false}>
 		  <TileLayer
