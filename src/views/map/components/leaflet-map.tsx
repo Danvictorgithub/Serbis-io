@@ -28,7 +28,8 @@ function SetUserLocation():JSX.Element {
             return response.json()})
           .then(response => {
             const locationData = response.features['0'].properties.geocoding;
-            const location = `${locationData.city}, ${locationData.district}`;
+            const location = (typeof locationData.district != "undefined" ? `${locationData.city}, ${locationData.district}` : `${locationData.district}`);
+            console.log(locationData.district)
             locationStateContent.locationState[1](location);
             return response;
           });
@@ -50,7 +51,7 @@ function WatchCenter():JSX.Element {
             return response.json()})
           .then(response => {
             const locationData = response.features['0'].properties.geocoding;
-            const location = `${locationData.city}, ${locationData.district}`;
+            const location = (typeof locationData.district != "undefined" ? `${locationData.city}, ${locationData.district}` : `${locationData.city}`);
             locationStateContent.locationState[1](location);
             return response;
           });
