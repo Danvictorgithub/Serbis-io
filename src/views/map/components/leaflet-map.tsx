@@ -1,12 +1,18 @@
 import React, {useState} from 'react';
 import "leaflet/dist/leaflet.css";
 import {MapContainer,TileLayer,useMap ,useMapEvents,useMapEvent, Marker, Popup} from 'react-leaflet';
+import redIcon from "../../../assets/icons/map-marker-icon.png";
+import {Icon} from "leaflet";
 interface LatLngLiteral {
     lat: number;
     lng: number;
 }
 function SetUserLocation():JSX.Element {
-  const [position, setPosition] = useState<null| LatLngLiteral>(null)
+  const [position, setPosition] = useState<null| LatLngLiteral>(null);
+  const customIcon = new Icon({
+    iconUrl:redIcon,
+    iconSize: [40,40]
+  });
   const map = useMapEvents({
       dblclick() {
         map.locate();
@@ -17,7 +23,7 @@ function SetUserLocation():JSX.Element {
       }
     });
   return position === null ? <></> : (
-    <Marker position={position}>
+    <Marker position={position} icon={customIcon}>
       <Popup>You are here</Popup>
     </Marker>
   )
