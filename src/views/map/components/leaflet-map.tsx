@@ -29,8 +29,13 @@ function SetUserLocation():JSX.Element {
           .then(response => {
             const locationData = response.features['0'].properties.geocoding;
             const location = (typeof locationData.district != "undefined" ? `${locationData.city}, ${locationData.district}` : `${locationData.district}`);
-            console.log(locationData.district)
-            locationStateContent.locationState[1](location);
+            console.log(locationData.district);
+            if (location !== "undefined" ) {
+              if (locationStateContent !== null) {
+                locationStateContent.locationState[1](location);
+              }
+            }
+            
             return response;
           });
         map.flyTo(e.latlng,map.getZoom());
@@ -52,7 +57,12 @@ function WatchCenter():JSX.Element {
           .then(response => {
             const locationData = response.features['0'].properties.geocoding;
             const location = (typeof locationData.district != "undefined" ? `${locationData.city}, ${locationData.district}` : `${locationData.city}`);
-            locationStateContent.locationState[1](location);
+            console.log(locationData.district);
+            if (location !== "undefined" ) {
+              if (locationStateContent !== null) {
+                locationStateContent.locationState[1](location);
+              }
+            }
             return response;
           });
   });
