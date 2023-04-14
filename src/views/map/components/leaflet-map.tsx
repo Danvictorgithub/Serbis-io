@@ -1,4 +1,4 @@
-import React, {useState, useContext} from 'react';
+import React, {useState, useContext, useEffect} from 'react';
 import "leaflet/dist/leaflet.css";
 import {MapContainer,TileLayer,useMap ,useMapEvents,useMapEvent, Marker, Popup} from 'react-leaflet';
 import redIcon from "../../../assets/icons/map-marker-icon.png";
@@ -6,6 +6,7 @@ import {Icon} from "leaflet";
 
 import locationModalProps from './utils/locationModalProps';
 import MapContext from './utils/mapContext';
+import { AppContext } from '../../../App';
 interface LatLngLiteral {
     lat: number;
     lng: number;
@@ -49,6 +50,7 @@ function SetUserLocation():JSX.Element {
 }
 function WatchCenter():JSX.Element {
   const locationStateContent = useContext(MapContext);
+  const MapCenterStates = useContext(AppContext);
   const map = useMapEvent('moveend',()=> {
     const latlng = map.getCenter();
     Promise.resolve(fetch(`https://nominatim.openstreetmap.org/reverse?format=geocodejson&lat=${latlng.lat}&lon=${latlng.lng}`))
@@ -57,21 +59,25 @@ function WatchCenter():JSX.Element {
           .then(response => {
             const locationData = response.features['0'].properties.geocoding;
             const location = (typeof locationData.district != "undefined" ? `${locationData.city}, ${locationData.district}` : `${locationData.city}`);
-            console.log(locationData.district);
+            // console.log(locationData.district);
             if (location !== "undefined" ) {
               if (locationStateContent !== null) {
                 locationStateContent.locationState[1](location);
+                MapCenterStates?.setMapLocation(location);
               }
             }
             return response;
+          }).catch((error)=> {
+            return;
           });
   });
   return (<></>);
 }
 export default function LeafletMap() {
+  const MapCenterStates = useContext(AppContext);
 
 	return (
-		<MapContainer center={[8.9475377, 125.54062339999996]} zoom={13} scrollWheelZoom={true} doubleClickZoom={false}>
+		<MapContainer center={[MapCenterStates?.center.lat,MapCenterStates?.center.lng]} zoom={13} scrollWheelZoom={true} doubleClickZoom={false}>
 		  <TileLayer
 		    attribution='&copy; <a href="https://	www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
 		    url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"

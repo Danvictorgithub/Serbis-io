@@ -1,9 +1,9 @@
 import React from "react";
 
-export default function Location() {
+export default function Location({mapLocation}:{mapLocation:string}) {
   return (
     <div className='heroLocation'>
-      <h2>Current Location: Butuan</h2>
+      <h2>Current Location: {mapLocation}</h2>
       <div className='locationMeta'>
         <h3>No. Services: <span>24</span></h3>
         <div className="serviceTags">

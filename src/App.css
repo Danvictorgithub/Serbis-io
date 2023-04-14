@@ -268,6 +268,8 @@
   padding:12px;
   margin:40px auto;
 }
-
+.red {
+  background-color: #FF5A5A;
+}
 /*web responsive -> home {map is moved at the left-side}*/
 /*implement darkmode in settings*/

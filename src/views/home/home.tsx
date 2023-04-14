@@ -8,7 +8,7 @@ interface ServiceInfo {
 	sTag:string,
 }
 
-export default function Home() {
+export default function Home({mapLocation}:{mapLocation:string}) {
 	const services:ServiceInfo[] = [
 		{sName:"Vita Spring",sImg:"348s.jpg",sTag:"Water Delivery"},
 		{sName:"SM Mall Cinema",sImg:"1f213.jpg",sTag:"Entertainment"}
@@ -16,7 +16,7 @@ export default function Home() {
 	return (
 		<div className='home container'>
 			<div className='wrapper'>
-				<Location />
+				<Location mapLocation={mapLocation}/>
 				<div className='servicesContent'>
 					{services.map((service:ServiceInfo):JSX.Element => {
 						return (
