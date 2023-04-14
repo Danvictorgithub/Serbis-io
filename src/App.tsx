@@ -7,10 +7,6 @@ import Mail from "./views/mail/mail";
 import Profile from "./views/profile/profile";
 import './App.css';
 import Map from './views/map/map';
-// interface RoutesProps {
-//   children?: React.ReactNode;
-//   location?: Partial<Location> | string;
-// }
 interface MapCoordinates {
   lat:number,
   lng:number

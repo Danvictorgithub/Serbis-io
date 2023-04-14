@@ -75,9 +75,10 @@ function WatchCenter():JSX.Element {
 }
 export default function LeafletMap() {
   const MapCenterStates = useContext(AppContext);
-
+  const latitude = (MapCenterStates != undefined ? MapCenterStates.center.lat : 0);
+  const longitude = (MapCenterStates != undefined ? MapCenterStates.center.lng : 0);
 	return (
-		<MapContainer center={[MapCenterStates?.center.lat,MapCenterStates?.center.lng]} zoom={13} scrollWheelZoom={true} doubleClickZoom={false}>
+		<MapContainer center={[latitude,longitude]} zoom={13} scrollWheelZoom={true} doubleClickZoom={false}>
 		  <TileLayer
 		    attribution='&copy; <a href="https://	www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
 		    url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
