@@ -64,6 +64,7 @@ function WatchCenter():JSX.Element {
               if (locationStateContent !== null) {
                 locationStateContent.locationState[1](location);
                 MapCenterStates?.setMapLocation(location);
+                MapCenterStates?.setCenter({lat:latlng.lat,lng:latlng.lng});
               }
             }
             return response;
