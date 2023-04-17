@@ -1,4 +1,3 @@
-
 import HeartLogo from "../../assets/heartLogo";
 import React from 'react';
 export default function Header() {
