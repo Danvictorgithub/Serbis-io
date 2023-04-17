@@ -1,10 +1,8 @@
-import React, {useState, useContext, useEffect} from 'react';
+import React, {useState, useContext} from 'react';
 import "leaflet/dist/leaflet.css";
-import {MapContainer,TileLayer,useMap ,useMapEvents,useMapEvent, Marker, Popup} from 'react-leaflet';
+import {MapContainer,TileLayer,useMapEvents,useMapEvent, Marker, Popup} from 'react-leaflet';
 import redIcon from "../../../assets/icons/map-marker-icon.png";
 import {Icon} from "leaflet";
-
-import locationModalProps from './utils/locationModalProps';
 import MapContext from './utils/mapContext';
 import { AppContext } from '../../../App';
 interface LatLngLiteral {
@@ -12,6 +10,7 @@ interface LatLngLiteral {
     lng: number;
 }
 function SetUserLocation():JSX.Element {
+//This function allows user to double click and fly to the their current location with marker
   const locationStateContent = useContext(MapContext);
   const [position, setPosition] = useState<null| LatLngLiteral>(null);
   const customIcon = new Icon({
@@ -48,7 +47,10 @@ function SetUserLocation():JSX.Element {
     </Marker>
   )
 }
+
 function WatchCenter():JSX.Element {
+// This functions watch the center of the map, every time the user stops swiping
+// --To-do-list: Find a way to reduce the unnecessary fetching every time the user swipes faster
   const locationStateContent = useContext(MapContext);
   const MapCenterStates = useContext(AppContext);
   const map = useMapEvent('moveend',()=> {
@@ -68,7 +70,7 @@ function WatchCenter():JSX.Element {
               }
             }
             return response;
-          }).catch((error)=> {
+          }).catch(()=> {
             return;
           });
   });

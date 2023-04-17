@@ -1,5 +1,4 @@
 import React, {useState,useEffect,useContext} from 'react';
-import locationModalProps from './utils/locationModalProps';
 import MapContext from './utils/mapContext';
 export default function LocationModal():JSX.Element {
 	const [show,setShow]  = useState<boolean>(true);

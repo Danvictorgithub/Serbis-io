@@ -21,14 +21,14 @@ export const AppContext = createContext<MapCenterStates|null>(null);
 const App = () => {
   const [mapLocation,setMapLocation] = useState<string>("");
   const [center,setCenter] = useState<MapCoordinates>({lat:0,lng:0});
+
   useEffect(()=>{
+    //gets user location and inputted on reverse geolocation api 
+    //in which the location approximation is return to the location component 
     navigator.geolocation.getCurrentPosition(async (position)=> {
-      // console.log(position.coords.latitude);
       const locationDataPromise = await fetch(`https://nominatim.openstreetmap.org/reverse?format=geocodejson&lat=${position.coords.latitude}&lon=${position.coords.longitude}`);
       const locationDataObj = await locationDataPromise.json();
-      // console.log(locationDataObj);
       const locationData = locationDataObj.features['0'].properties.geocoding;
-      // console.log(locationData);
       const location = (typeof locationData.district != "undefined" ? `${locationData.city}, ${locationData.district}` : `${locationData.district}`);
       if (typeof location !== 'undefined') {
         setMapLocation(location);
@@ -36,6 +36,7 @@ const App = () => {
       }
     });
   },[]);
+
   return (
     <div className="App">
       <BrowserRouter>
