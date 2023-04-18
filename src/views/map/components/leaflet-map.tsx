@@ -50,7 +50,8 @@ function SetUserLocation():JSX.Element {
 
 function WatchCenter():JSX.Element {
 // This functions watch the center of the map, every time the user stops swiping
-// --To-do-list: Find a way to reduce the unnecessary fetching every time the user swipes faster
+// --To-do-list: Find a way to reduce the unnecessary fetching every time the user swipes
+  
   const locationStateContent = useContext(MapContext);
   const MapCenterStates = useContext(AppContext);
   const map = useMapEvent('moveend',()=> {
@@ -60,8 +61,8 @@ function WatchCenter():JSX.Element {
             return response.json()})
           .then(response => {
             const locationData = response.features['0'].properties.geocoding;
-            const location = (typeof locationData.district != "undefined" ? `${locationData.city}, ${locationData.district}` : `${locationData.city}`);
-            // console.log(locationData.district);
+            const location = (typeof locationData.district != "undefined" ? (`${locationData.city}, ${locationData.district}`) : `${locationData.city}`);
+            // console.log(locationData);
             if (location !== "undefined" ) {
               if (locationStateContent !== null) {
                 locationStateContent.locationState[1](location);

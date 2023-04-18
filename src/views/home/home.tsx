@@ -1,6 +1,7 @@
 import React from 'react';
 import Location from './components/location';
 import ServicesContent from "./components/servicesContent";
+import SearchBar from "./components/searchbar";
 export interface ServiceInfo {
 	sName:string,
 	sImg:string,
@@ -17,6 +18,7 @@ export default function Home({mapLocation}:{mapLocation:string}) {
 	return (
 		<div className='home container'>
 			<div className='wrapper'>
+				<SearchBar/>
 				<Location mapLocation={mapLocation}/>
 				<ServicesContent services={services}/>
 			</div>

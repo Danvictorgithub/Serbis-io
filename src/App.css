@@ -73,6 +73,26 @@
 .home {
 /*    background-color:#EAE7F3;*/
 }
+.searchBar {
+  margin-bottom: 24px;
+  position: relative;
+}
+.searchBar input {
+  width:100%;
+  border-radius: 2rem;
+  border: 2px solid transparent;
+  box-shadow: 0px 3px 5px lightgray;
+  height:60px;
+  padding:18px;
+  padding-left:50px;
+  font-weight: bolder;
+  font-size:1.35rem;
+}
+.searchIcon {
+  position: absolute;
+  top: 30%;
+  left:15px;
+}
 .heroLocation {
   padding:12px;
   background-color: white;

@@ -42,7 +42,7 @@ const App = () => {
       <BrowserRouter>
         <Header />
         <Routes>
-          <Route path="/" element={<Home mapLocation={mapLocation}/>}></Route>
+          <Route path="/" element={<AppContext.Provider value={{center:center,setCenter:setCenter,mapLocation:mapLocation,setMapLocation:setMapLocation}}><Home mapLocation={mapLocation}/></AppContext.Provider>}></Route>
           <Route path="/map" element={<AppContext.Provider value={{center:center,setCenter:setCenter,mapLocation:mapLocation,setMapLocation:setMapLocation}} ><Map /></AppContext.Provider>}></Route>
           <Route path="/inbox" element={<Mail />}></Route>
           <Route path="/profile" element={<Profile />}></Route>
