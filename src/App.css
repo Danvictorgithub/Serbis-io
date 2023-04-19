@@ -13,6 +13,7 @@
   padding:18px;
 }
 .App {
+  min-height:100svh;
   display:flex;
   flex-direction: column;
 }
