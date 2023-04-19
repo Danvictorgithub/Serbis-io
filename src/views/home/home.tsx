@@ -10,6 +10,8 @@ export interface ServiceInfo {
 export default function Home({mapLocation}:{mapLocation:string}) {
 	const services:ServiceInfo[] = [
 		{sName:"Vita Spring",sImg:"348s.jpg",sTag:"Water Delivery"},
+		{sName:"SM Mall Cinema",sImg:"1f213.jpg",sTag:"Entertainment"},
+		{sName:"Vita Spring",sImg:"348s.jpg",sTag:"Water Delivery"},
 		{sName:"SM Mall Cinema",sImg:"1f213.jpg",sTag:"Entertainment"}
 	];
 	// to do

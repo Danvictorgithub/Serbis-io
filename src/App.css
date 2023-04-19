@@ -8,11 +8,11 @@
   width:100%;
 }
 .container {
-  background-color:#EAE7F3;
+/*  background-color:#EAE7F3;*/
+  background-color: #FAFAFA;
   padding:18px;
 }
 .App {
-  height:100svh;
   display:flex;
   flex-direction: column;
 }
@@ -71,7 +71,6 @@
   fill: orangered;
 }
 .home {
-/*    background-color:#EAE7F3;*/
 }
 .searchBar {
   margin-bottom: 24px;
@@ -94,6 +93,7 @@
   left:15px;
 }
 .heroLocation {
+/*  position: relative;*/
   padding:12px;
   background-color: white;
   border-radius: 10px ;
@@ -118,6 +118,7 @@
   gap:12px;
   padding:12px;
   flex-wrap: wrap;
+/*  position: sticky;*/
 }
 .servicesContent > *{
   margin-bottom: 36px;
