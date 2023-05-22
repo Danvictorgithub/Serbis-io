@@ -8,10 +8,19 @@ export default function SearchBar() {
 		setSearchForm(e.currentTarget.value);
 		console.log(searchForm);
 	}
-	function getLocation(e:React.KeyboardEvent):void {
+	function submitHandlerEnterKey(e:React.KeyboardEvent):void {
 		//if user press enter (charCode 13 update API):
+		// console.log(e.key);
 		if (e.key === "Enter") {
-		console.log(searchForm)
+			// getLocation();
+		}
+		return;
+	}
+	function submitHandlerButton(e:React.SyntheticEvent):void {
+		// getLocation();
+		return;
+	} 
+	function getLocation():void {
 		fetch(`https://nominatim.openstreetmap.org/search?format=json&addressdetails=1&q=${searchForm}`)
 			.then((response) => response.json())
 			.then((response) => {
@@ -21,14 +30,11 @@ export default function SearchBar() {
 				setSearchForm("");
 			})
 			.catch(()=> {return;});
-		}
-		return;
 	}
 	return(
 		<div className="searchBar">
-			{/*<h1>Test</h1>*/}
-			<input onKeyPress={getLocation}onChange={updateSearchForm} type="text" placeholder='Enter Location' value={searchForm}></input>
-			<img className="searchIcon" src={searchIcon}/>
+			<input type="text" onChange={updateSearchForm} placeholder="Search Services" value={searchForm}/>
+			<button type="button" onClick={submitHandlerButton}><img className="searchIcon" src={searchIcon}/></button>
 		</div>
 	)
 }
