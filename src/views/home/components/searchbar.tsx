@@ -19,17 +19,9 @@ export default function SearchBar() {
 	function submitHandlerButton(e:React.SyntheticEvent):void {
 		// getLocation();
 		return;
-	} 
-	function getLocation():void {
-		fetch(`https://nominatim.openstreetmap.org/search?format=json&addressdetails=1&q=${searchForm}`)
-			.then((response) => response.json())
-			.then((response) => {
-				console.log(response[0].address);
-				const location = `${response[0].address.city || response[0].address.village || response[0].address.town}${(typeof response[0].address.village !== "undefined") ? `, ${response[0].address.village}` : ""}`;
-				MapCenterStates?.setMapLocation(location);
-				setSearchForm("");
-			})
-			.catch(()=> {return;});
+	}
+	function FetchServicesAPI() {
+		// do something
 	}
 	return(
 		<div className="searchBar">
