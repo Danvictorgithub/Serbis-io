@@ -301,6 +301,9 @@
   align-items: flex-start;
 }
 .leaflet-container {
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
   height:100%;
   width:100%;
 }
@@ -314,6 +317,17 @@
   border-radius: 12px;
   padding:12px;
   margin:40px auto;
+}
+.searchMap {
+  margin-bottom:24px;
+  position:absolute;
+  z-index:1002;
+}
+.searchMap input{
+  border-radius: 2rem;
+  border:1px solid transparent;
+  padding:24px;
+  height:50px;
 }
 .red {
   background-color: #FF5A5A;
