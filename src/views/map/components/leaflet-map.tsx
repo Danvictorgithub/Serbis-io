@@ -1,14 +1,67 @@
-import React, {useState, useContext} from 'react';
+import React, {useState, useRef,useContext,useEffect} from 'react';
 import "leaflet/dist/leaflet.css";
-import {MapContainer,TileLayer,useMapEvents,useMapEvent, Marker, Popup} from 'react-leaflet';
+import {MapContainer,TileLayer,useMap,useMapEvents,useMapEvent, Marker, Popup} from 'react-leaflet';
 import redIcon from "../../../assets/icons/map-marker-icon.png";
-import {Icon} from "leaflet";
+import {Icon,LatLng} from "leaflet";
 import MapContext from './utils/mapContext';
 import { AppContext } from '../../../App';
 interface LatLngLiteral {
     lat: number;
     lng: number;
 }
+function SearchMap():JSX.Element {
+  const [query,setQuery] = useState<string>("");
+  const map = useMap();
+  const MapCenterStates = useContext(AppContext);
+  function updateInput(e:React.FormEvent<HTMLInputElement>) {
+    setQuery(e.currentTarget.value);
+    console.log(query);
+  }
+  function inputSubmitHandler(e:React.KeyboardEvent):void {
+    // console.log("Hey")
+    if (e.key === "Enter") {
+      // console.log("This is called");
+      getLocation();
+      return;
+    }
+    return;
+  }
+  function getLocation():void {
+    fetch(`https://nominatim.openstreetmap.org/search?format=json&addressdetails=1&limit=1&q=${query}`)
+      .then((response) => response.json())
+      .then((response) => {
+        console.log(response[0].address);
+        const coordinates = {lat:response[0].lat,lng:response[0].lon};
+        const location = `${response[0].address.city || response[0].address.village || response[0].address.town}${(typeof response[0].address.village !== "undefined") ? `, ${response[0].address.village}` : ""}`;
+        MapCenterStates?.setMapLocation(location);
+        MapCenterStates?.setCenter(coordinates);
+        const l = new LatLng(coordinates.lat,coordinates.lng);
+        map.flyTo(l);
+        setQuery("");
+      })
+      .catch(()=> {return;});
+  }
+  return (
+    <div className="searchMap">
+      <input type="text" onKeyPress={inputSubmitHandler} onChange={updateInput} value={query} placeholder='Enter Location'></input>
+      {/*<img className="searchIcon" src={searchIcon}/>*/}
+    </div>
+  )
+}
+// function UpdateMap():JSX.Element {
+//   const map = useMap();
+//   const MapCenterStates = useContext(AppContext);
+//   let latitude = (MapCenterStates != undefined ? MapCenterStates.center.lat : 0);
+//   let longitude = (MapCenterStates != undefined ? MapCenterStates.center.lng : 0);
+//   let l = new LatLng(latitude,longitude);
+//   useEffect(()=>{
+//     let latitude = (MapCenterStates != undefined ? MapCenterStates.center.lat : 0);
+//     let longitude = (MapCenterStates != undefined ? MapCenterStates.center.lng : 0);
+//     let l = new LatLng(latitude,longitude);
+//     map.flyTo(l,map.getZoom());
+//   },[MapCenterStates?.center]);
+//   return (<></>);
+// }
 function SetUserLocation():JSX.Element {
 //This function allows user to double click and fly to the their current location with marker
   const locationStateContent = useContext(MapContext);
@@ -35,7 +88,6 @@ function SetUserLocation():JSX.Element {
                 locationStateContent.locationState[1](location);
               }
             }
-            
             return response;
           });
         map.flyTo(e.latlng,map.getZoom());
@@ -59,7 +111,7 @@ function WatchCenter():JSX.Element {
     Promise.resolve(fetch(`https://nominatim.openstreetmap.org/reverse?format=geocodejson&lat=${latlng.lat}&lon=${latlng.lng}`))
           .then((response)=> {
             return response.json()})
-          .then(response => {
+          .then(response => {map
             const locationData = response.features['0'].properties.geocoding;
             const location = (typeof locationData.district != "undefined" ? (`${locationData.city}, ${locationData.district}`) : `${locationData.city}`);
             // console.log(locationData);
@@ -79,16 +131,19 @@ function WatchCenter():JSX.Element {
 }
 export default function LeafletMap() {
   const MapCenterStates = useContext(AppContext);
-  const latitude = (MapCenterStates != undefined ? MapCenterStates.center.lat : 0);
-  const longitude = (MapCenterStates != undefined ? MapCenterStates.center.lng : 0);
+  let latitude = (MapCenterStates != undefined ? MapCenterStates.center.lat : 0);
+  let longitude= (MapCenterStates != undefined ? MapCenterStates.center.lng : 0);
+  let l = new LatLng(latitude,longitude);
 	return (
-		<MapContainer center={[latitude,longitude]} zoom={13} scrollWheelZoom={true} doubleClickZoom={false}>
+		<MapContainer center={l} zoom={13} scrollWheelZoom={true} doubleClickZoom={false}>
 		  <TileLayer
 		    attribution='&copy; <a href="https://	www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
 		    url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
 		  />
 		  <SetUserLocation/>
       <WatchCenter/>
+      {/*<UpdateMap/>*/}
+      <SearchMap/>
 		</MapContainer>
 	)
 }
